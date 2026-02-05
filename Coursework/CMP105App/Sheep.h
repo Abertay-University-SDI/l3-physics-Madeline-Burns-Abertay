@@ -13,10 +13,11 @@ public:
 	void handleInput(float dt) override;
 	void update(float dt) override;
 	void setWorldSize(sf::Vector2f);
+	void collisionResponse(GameObject&) override;
 
 private:
 	void checkWallAndBounce();
-	const float ACCELERATION = 30.0f;
+	const float ACCELERATION = 100.0f;
 	const float DRAG_FACTOR = 0.95f;
 	const float RESTITUTION_COEFF = -0.8f;
 	sf::Vector2f m_acceleration, m_worldSize;

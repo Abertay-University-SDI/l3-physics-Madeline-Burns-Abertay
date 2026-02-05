@@ -24,6 +24,10 @@ private:
 	sf::Texture m_backgroundTexture;
 	GameObject m_background;
 
+	const float SHAKE_TIMER = 0.2f;
+	const float SHAKE_INTENSITY = 10.f;
+	float m_shakeTimer;
+
 	// Here are our nice animals
 	sf::Texture m_pigTexture;
 	sf::Texture m_sheepTexture;

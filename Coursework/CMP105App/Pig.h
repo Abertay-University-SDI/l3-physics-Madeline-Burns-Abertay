@@ -1,6 +1,7 @@
 #pragma once
 #include "Framework/GameObject.h"
 #include "Framework/Animation.h"
+#include "Framework/Collision.h"
 
 class Pig : public GameObject
 {

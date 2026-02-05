@@ -89,6 +89,12 @@ void Sheep::setWorldSize(sf::Vector2f worldSize) {
 	m_worldSize = worldSize;
 }
 
+void Sheep::collisionResponse(GameObject&)
+{
+	m_velocity *= RESTITUTION_COEFF;
+	move(m_velocity);
+}
+
 void Sheep::checkWallAndBounce() {
 	sf::Vector2f pos = getPosition();
 	sf::Vector2f bottomRightCorner = { m_worldSize.x - getSize().x, m_worldSize.y - getSize().y };
