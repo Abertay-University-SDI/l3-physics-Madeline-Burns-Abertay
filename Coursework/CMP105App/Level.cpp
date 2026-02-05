@@ -17,6 +17,7 @@ Level::Level(sf::RenderWindow& hwnd, Input& in) :
 	m_sheep.setTexture(&m_sheepTexture);
 	m_sheep.setPosition({ background_size / 2.f, background_size / 2.f });
 	m_sheep.setSize({ 64,64 });
+	m_sheep.setCollisionBox({ { 0.f, 0.f }, { 60.f, 60.f } });
 	m_sheep.setWorldSize({ background_size, background_size });
 
 	// Setup pigs.
@@ -32,7 +33,8 @@ Level::Level(sf::RenderWindow& hwnd, Input& in) :
 		Pig* new_pig = new Pig({ background_size, background_size });
 		new_pig->setTexture(&m_pigTexture);
 		new_pig->setSize({ 64, 64 });
-		new_pig->setPosition(pig_locations[i]);	
+		new_pig->setPosition(pig_locations[i]);
+		new_pig->setCollisionBox({ { 0.f, 0.f}, { 60.f, 60.f} });
 		m_pigPointers.push_back(new_pig);
 	}
 	
@@ -69,7 +71,10 @@ void Level::update(float dt)
 	m_window.setView(view);
 
 	m_sheep.update(dt);
-	for (auto pig : m_pigPointers) pig->update(dt);
+	for (auto pig : m_pigPointers) {
+		pig->update(dt);
+		pig->collisionResponse(m_sheep);
+	}
 }
 
 // Render level

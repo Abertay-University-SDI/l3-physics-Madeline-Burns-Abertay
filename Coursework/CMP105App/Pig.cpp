@@ -130,6 +130,12 @@ void Pig::setRandomDirection()
 	}
 }
 
+void Pig::collisionResponse(GameObject& collider)
+{
+	if 
+	std::cout << "Pig was run over by Sheep" << std::endl;
+}
+
 void Pig::update(float dt)
 {
     // tick down
