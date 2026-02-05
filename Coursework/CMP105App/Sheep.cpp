@@ -1,4 +1,6 @@
 #include "Sheep.h"
+// temp
+#include <iostream>
 
 Sheep::Sheep()
 {
@@ -80,4 +82,16 @@ void Sheep::update(float dt)
 	m_velocity += m_acceleration * dt;
 	m_velocity *= DRAG_FACTOR;
 	move(m_velocity);
+	checkWallAndBounce();
+}
+
+void Sheep::setWorldSize(sf::Vector2f worldSize) {
+	m_worldSize = worldSize;
+}
+
+void Sheep::checkWallAndBounce() {
+	sf::Vector2f pos = getPosition();
+	sf::Vector2f bottomRightCorner = { m_worldSize.x - getSize().x, m_worldSize.y - getSize().y };
+	if (pos.x < 0 || pos.x > bottomRightCorner.x || pos.y < 0 || pos.y > bottomRightCorner.y)
+		m_velocity *= RESTITUTION_COEFF;
 }
